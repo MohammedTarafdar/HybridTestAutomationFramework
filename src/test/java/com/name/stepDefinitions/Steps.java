@@ -1,7 +1,6 @@
 package com.name.stepDefinitions;
 
 import org.junit.Assert;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import com.name.pageObjects.LoginPage;
@@ -9,9 +8,7 @@ import io.cucumber.java.en.*;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 
-public class Steps {
-	public WebDriver driver;
-	public LoginPage lp;
+public class Steps extends StepsBase {
 	
 	@Given("User launch Chrome browser")
 	public void user_launch_chrome_browser() {
@@ -61,6 +58,45 @@ public class Steps {
 	public void close_browser() {
 	    driver.quit();
 	}
+	
+	// for add new customer
+
+
+	@Then("User can view Dashboard")
+	public void user_can_view_dashboard() {
+	    
+	}
+	@When("User click on customers menu")
+	public void user_click_on_customers_menu() {
+	    
+	}
+	@Then("User click on customer menu item")
+	public void user_click_on_customer_menu_item() {
+	    
+	}
+	@Then("User click on add new button")
+	public void user_click_on_add_new_button() {
+	    
+	}
+	@Then("User can view Add New Customer page")
+	public void user_can_view_add_new_customer_page() {
+	    
+	}
+	@When("User enter customer info")
+	public void user_enter_customer_info() {
+	    
+	}
+	@When("User click on Save button")
+	public void user_click_on_save_button() {
+	    
+	}
+	@Then("User can view confirmation message {string}")
+	public void user_can_view_confirmation_message(String string) {
+	    
+	}
+	
+
+
 
 
 }
