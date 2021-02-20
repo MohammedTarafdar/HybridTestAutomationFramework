@@ -21,9 +21,16 @@ public class AddNewCustomerpage {
 	By textPassword = By.id("Password");
 	By textFirstName = By.id("FirstName");
 	By textLastName = By.id("LastName");
-	By gender_male = By.id("Gender_Male");
+	By text_gender_male = By.id("Gender_Male");
+	By text_genger_female = By.id("Gender_Female");
+	
+	By text_save = By.name("save");
 	
 	
+	
+	public String getPageTitle() {
+		return ldriver.getTitle();
+	}
 	
 	public void clickOnTopManuCustomers() {
 		ldriver.findElement(top_manu_customers).click();
@@ -54,8 +61,17 @@ public class AddNewCustomerpage {
 	}
 	
 	
-	public void setCustomerGender() {
+	public void setCustomerGender(String gender) {
 		
+		if (gender.equals("male")) {
+			ldriver.findElement(text_gender_male).click();	
+		}
+		else if (gender.equals("female")) {
+			ldriver.findElement(text_genger_female).click();
+		}
+		else {
+			ldriver.findElement(text_genger_female).click();
+		}
 	}
 	
 	public void setCustomerDateOfBirth() {
@@ -77,6 +93,10 @@ public class AddNewCustomerpage {
 	
 	public void setManagerOfVendor() {
 		
+	}
+	
+	public void clickOnSave() {
+		ldriver.findElement(text_save).click();
 	}
 	
 

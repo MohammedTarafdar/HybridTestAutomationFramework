@@ -1,8 +1,10 @@
 package com.name.stepDefinitions;
 
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import com.name.pageObjects.AddNewCustomerpage;
 import com.name.pageObjects.LoginPage;
 import io.cucumber.java.en.*;
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -64,35 +66,54 @@ public class Steps extends StepsBase {
 
 	@Then("User can view Dashboard")
 	public void user_can_view_dashboard() {
-	    
+		addNewCust = new AddNewCustomerpage(driver);
+		Assert.assertEquals("Dashboard / nopCommerce administration", addNewCust.getPageTitle());
 	}
+	
 	@When("User click on customers menu")
-	public void user_click_on_customers_menu() {
-	    
+	public void user_click_on_customers_menu() throws InterruptedException {
+		Thread.sleep(3000);
+		addNewCust.clickOnTopManuCustomers();
 	}
+	
 	@Then("User click on customer menu item")
-	public void user_click_on_customer_menu_item() {
-	    
+	public void user_click_on_customer_menu_item() throws InterruptedException {
+		Thread.sleep(2000);
+		addNewCust.clickOnInnerLinkCustomers();   
 	}
+	
 	@Then("User click on add new button")
-	public void user_click_on_add_new_button() {
-	    
+	public void user_click_on_add_new_button() throws InterruptedException {
+	    Thread.sleep(2000);
+	    addNewCust.clickOnAddNewButton();
 	}
+	
 	@Then("User can view Add New Customer page")
-	public void user_can_view_add_new_customer_page() {
-	    
+	public void user_can_view_add_new_customer_page() throws InterruptedException {
+	    Thread.sleep(2000);
+	    Assert.assertEquals("Add a new customer / nopCommerce administration", addNewCust.getPageTitle() );
 	}
+	
 	@When("User enter customer info")
-	public void user_enter_customer_info() {
+	public void user_enter_customer_info() throws InterruptedException {
+		Thread.sleep(2000);
+		String email = randomeString() + "@gmail.com";
+		
+		addNewCust.setEmail(email);
+		addNewCust.setPassword("test123");
+		addNewCust.setFirstName("Jeff");
+		addNewCust.setLastName("Thomus");
+		addNewCust.setCustomerGender("male");
 	    
 	}
 	@When("User click on Save button")
-	public void user_click_on_save_button() {
-	    
+	public void user_click_on_save_button() throws InterruptedException {
+		addNewCust.clickOnSave();
+		Thread.sleep(2000);
 	}
 	@Then("User can view confirmation message {string}")
-	public void user_can_view_confirmation_message(String string) {
-	    
+	public void user_can_view_confirmation_message(String msg) {
+	    Assert.assertTrue(driver.findElement(By.tagName("body")).getText().contains("The new customer has been added successfully."));
 	}
 	
 
